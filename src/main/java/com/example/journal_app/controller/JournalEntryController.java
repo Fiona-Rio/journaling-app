@@ -21,10 +21,6 @@ public class JournalEntryController {
         return ResponseEntity.ok(journalEntryService.createEntry(entry));
     }
 
-    @GetMapping
-    public ResponseEntity<List<JournalEntry>> getUserEntries(@AuthenticationPrincipal User user) {
-        return ResponseEntity.ok(journalEntryService.getUserEntries(user));
-    }
 
     @GetMapping("/{id}")
     public ResponseEntity<JournalEntry> getEntry(@PathVariable Long id) {
