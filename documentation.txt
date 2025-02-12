@@ -1,0 +1,47 @@
+⭕ Model.View.Controller
+
+🔵 Model - Les fondations (JournalEntry)
+    🔹 structure les données avec un consstructeur, des getters et des setters.
+    🔹 @Entity indique que cela doit être transformé en table dans la base de données.
+    🔹 c'est ce qu'on appelle l'ORM (Object-Relational Mapping) qui fait le pont entre le monde orienté objet de Java et le monde relationnel des bases de données.
+
+🔵 Controller - Le Receptionniste (JournalEntryController)
+    🔹 Reçoit les requêtes HTTP (GET/POST/DELETE...) et décide quoi en faire.
+    🔹 @RestController indique que cette classe gère les requêtes web et renvoie des données au format JSON.*
+
+🔵 Service - Le Spécialiste (JournalEntryService)
+    🔹 Contient la logique métier de l'application.
+    🔹 Connait toues les rêgles et les procédures. (vérifie qu'une entrée de journal n'est pas vide avant de la sauvegarder)
+
+🔵 Repository - L'Assistant (JournalEntryRepository)
+     🔹 Interface qui hérite de JPARepository.
+     🔹 Permet d'intéragir avec la base de données sans écrire de SQL pour ranger les données.
+
+⭕ Programmation.Orienté.Objet
+
+🔵 Encapsulation - Protéger les données
+    🔹 Mettre les propriétés en private
+    🔹 Créer des getters et des setters pour accéder aux données privées.
+
+🔵 Relations entre Classes (cardinalité de tables)
+    🔹 @ManytoOne indique la relation entre Journal et User (un User peut avoir plusieurs objets Journal)
+
+🔵 Héritage
+    🔹 les repositories héritent de JpaRepository, obtenant des éthodes de manipulation de données (????)
+
+⭕ Concepts Spring Boot
+
+🔵 Injection de Dépendances
+    🔹 @RequiredArgsConstructoor dans le Service et le Controller.
+    🔹 Gère automatiquement les dépendances entres composants. (????)
+
+🔵 REST API
+    🔹 Le controller définit une API REST avec des endpoints
+    @PostMapping // Crée une nouvelle entrée
+    @GetMapping("/{id}") // Récupère une entrée
+    @DeleteMapping("/{id}") // Supprime une entrée
+
+🔵 Gestion des entités
+    🔹 Spring Data JPA simplifie la persistance des données.
+    🔹 journalEntryRepository.save(entry) sauvegarde automatiquement une entrée en base de données.
+
