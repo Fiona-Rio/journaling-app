@@ -2,8 +2,7 @@ package com.example.journal_app.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -13,16 +12,23 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
-    private String username;
+    @Column(nullable = false, unique = true)
+    private String email;
 
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
-    private String email;
+    @Column(nullable = false, unique = true)
+    private String username;
 
-    // Relation avec JournalEntry
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<JournalEntry> entries;
+    // pour savoir si le compte est existant ou non
+    @Column(nullable = false, columnDefinition = "boolean default true")
+    private boolean active = true;
+
+    private LocalDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+    }
 }

@@ -27,8 +27,28 @@ public class JournalEntryService {
         return repository.findAll();
     }
 
-    public Optional<JournalEntry> getJournalEntryById(Long id) {
-        return repository.findById(id);
+    public JournalEntry getJournalEntryById(Long id) {
+        Optional<JournalEntry> entryOptional = repository.findById(id);
+        return entryOptional.orElse(null);
+    }
+
+    public JournalEntry update(JournalEntry journalEntry) {
+        // Vérifier si l'entrée existe
+        if (!repository.existsById(journalEntry.getId())) {
+            return null;
+        }
+
+        // Préserver la date de création originale si elle existe déjà
+        Optional<JournalEntry> existingEntry = repository.findById(journalEntry.getId());
+        if (existingEntry.isPresent()) {
+            LocalDateTime originalCreatedAt = existingEntry.get().getCreatedAt();
+            journalEntry.setCreatedAt(originalCreatedAt);
+        }
+
+        // Mettre à jour la date de modification
+        journalEntry.setUpdatedAt(LocalDateTime.now());
+
+        return repository.save(journalEntry);
     }
 
     public void delete(Long id) {

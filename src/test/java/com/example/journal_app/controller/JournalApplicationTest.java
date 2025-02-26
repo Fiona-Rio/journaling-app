@@ -23,15 +23,15 @@ public class JournalApplicationTest {
     void addJournalEntryTest() {
         // Créer et sauvegarder un utilisateur réel dans la base de données
         User testUser = new User();
-        testUser.setUsername("testuser");
-        testUser.setPassword("password");
-        testUser.setEmail("email@email.com");
+        testUser.setUsername("testuser2");
+        testUser.setPassword("testpassword");
+        testUser.setEmail("email2@email.com");
         User savedUser = userService.save(testUser);
 
         // Maintenant, utilisez l'ID généré automatiquement
         JournalEntry journalEntry = new JournalEntry();
-        journalEntry.setTitle("Test d'entrée d'un journal");
-        journalEntry.setContent("Ceci est un test pour créer une entrée de journal. J'espère que cela va marcher ! Bisou");
+        journalEntry.setTitle("Aurais-je réussi ?");
+        journalEntry.setContent("Quel ne fût pas ma surprise quand j'ai réalisé que mon journal avait été publié dans ma base de donnée. What a day !");
         journalEntry.setUser(savedUser);
 
         JournalEntry savedEntry = journalEntryService.save(journalEntry);

@@ -20,6 +20,8 @@ public class JournalEntry {
 
     private LocalDateTime createdAt;
 
+    private LocalDateTime updatedAt;
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -27,5 +29,11 @@ public class JournalEntry {
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();
+        updatedAt = createdAt; // Initialiser updatedAt avec la même valeur que createdAt
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now();
     }
 }

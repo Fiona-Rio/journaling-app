@@ -45,3 +45,6 @@
     🔹 Spring Data JPA simplifie la persistance des données.
     🔹 journalEntryRepository.save(entry) sauvegarde automatiquement une entrée en base de données.
 
+
+Persistence: concerne la façon dont les objets sont sauvegardés et récupérés depuis un stockage permanent
+Héritage: concerne la relation entre classes et comment les propriétés/comportements sont transmis d'une classe à une autre
